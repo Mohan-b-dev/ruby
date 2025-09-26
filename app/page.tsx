@@ -1,103 +1,133 @@
-import Image from "next/image";
+import AboutPage from "@/components/About";
+import DailyArrivals from "@/components/DailyArrivals";
+import Fruit from "@/components/Fruit";
+import Head from "next/head";
+import { CiStar, CiDeliveryTruck, CiHeart } from "react-icons/ci";
+import { IoShieldOutline } from "react-icons/io5";
+import Touch from "@/components/Touch";
+import HowToReachUs from "@/components/HowToReachUs";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+    <div className="min-h-screen bg-green-50">
+      <Head>
+        <title>Ruby Fruits Shop</title>
+        <meta
+          name="description"
+          content="Chennai's Premium Destination for Fresh, Quality Fruits"
         />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+      </Head>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      {/* Header */}
+
+      {/* Hero Section */}
+      <main
+        className="relative bg-cover bg-center min-h-screen"
+        style={{
+          backgroundImage: `url('https://images.unsplash.com/photo-1552825896-8059df63a1fb?ixlib=rb-4.1.0&q=80&w=1920&fit=crop')`,
+        }}
+      >
+        <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-center text-white px-4">
+          <h2 className="text-6xl font-bold mb-4 text-yellow-300">
+            RUBY FRUITS SHOP
+          </h2>
+          <p className="text-2xl mb-6 text-yellow-100">
+            Chennai's Premium Destination for Fresh, Quality Fruits
+          </p>
+          <p className="text-xl mb-8 text-yellow-200">
+            Avadi Railway Station Road, Chennai, Tamil Nadu
+          </p>
+          <div className="flex flex-wrap gap-6 mb-8 justify-center">
+            {[
+              {
+                color: "green",
+                text: "Premium Quality",
+                icon: <CiStar className="w-12 h-12 text-yellow-400" />,
+                bgColor: "green-500",
+              },
+              {
+                color: "yellow",
+                text: "Fresh Daily",
+                icon: <CiDeliveryTruck className="w-12 h-12 text-orange-400" />,
+                bgColor: "orange-500/30",
+              },
+              {
+                color: "blue",
+                text: "Organic Certified",
+                icon: <IoShieldOutline className="w-12 h-12 text-blue-400" />,
+                bgColor: "blue-300",
+              },
+              {
+                color: "red",
+                text: "Family Owned",
+                icon: <CiHeart className="w-12 h-12 text-pink-400" />,
+                bgColor: "pink-300",
+              },
+            ].map(({ color, text, icon, bgColor }) => (
+              <div key={text} className="flex flex-col items-center">
+                <div
+                  className={`flex items-center justify-center bg-${bgColor}/20 backdrop-blur-md border border-white/20 rounded-full w-24 h-24 shadow-lg hover:shadow-xl transition-shadow duration-300`}
+                >
+                  {icon || (
+                    <span
+                      className={`w-12 h-12 bg-${color}-400 rounded-full`}
+                    />
+                  )}
+                </div>
+                <p className="text-center text-white font-semibold mt-2 text-sm shadow-sm">
+                  {text}
+                </p>
+              </div>
+            ))}
+          </div>
+          <button
+            style={{
+              background:
+                "linear-gradient(to right, #22c55e, #f97316, #ef4444)",
+              color: "white",
+              padding: "1rem 2rem",
+              borderRadius: "9999px",
+              fontSize: "1.125rem",
+            }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            Explore Our Fruits
+          </button>
+          <p className="text-sm text-yellow-200 mb-2">
+            Open Daily • 8:00 AM - 10 PM
+          </p>
+          <p className="text-sm text-yellow-300">Scroll to explore</p>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      {/* About Section */}
+      <AboutPage />
+
+      {/* Why Choose Section */}
+      <div className="bg-yellow-50 ">
+        <section className="py-12 px-4 text-center">
+          <div className="bg-gradient-to-r from-green-500 to-orange-500 rounded-2xl p-6 mx-auto max-w-4xl">
+            <h2 className="text-2xl font-bold text-white mb-4">
+              Why Choose Ruby Fruits Shop?
+            </h2>
+            <p className="text-white text-center">
+              We believe that quality fruits are essential for a healthy
+              lifestyle. That’s why we go the extra mile to ensure every fruit
+              in our shop meets our high standards of freshness, taste, and
+              nutritional value.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      {/* Fruit collection */}
+      <Fruit />
+
+      {/* Daily Arrivals Section */}
+      <DailyArrivals />
+
+      {/*Get in Touch section */}
+      <Touch />
+
+      <HowToReachUs />
     </div>
   );
 }
