@@ -1,6 +1,9 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { FaLeaf, FaAward, FaClock, FaUsers } from "react-icons/fa";
 
-// Define CSS for the gradient circle
+
 const styles = `
   .gradient-circle {
     display: flex;
@@ -23,32 +26,35 @@ const styles = `
 `;
 
 export default function AboutPage() {
+  const [content, setContent] = useState({ paragraph1: "", paragraph2: "" });
+
+  useEffect(() => {
+    fetch("/api/about")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data)
+          setContent({
+            paragraph1: data.paragraph1,
+            paragraph2: data.paragraph2,
+          });
+      });
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-yellow-50 p-6">
       {/* Inject CSS styles */}
       <style>{styles}</style>
-
+      
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto">
         <h1 className="text-6xl font-bold bg-gradient-to-r from-green-500 to-red-500 bg-clip-text text-transparent mb-4">
           About Ruby Fruits Shop
         </h1>
-
-        <p className="text-gray-700 leading-relaxed">
-          Located in the heart of Avadi Railway Station Road, Ruby Fruits Shop
-          has been Chennai's trusted destination for premium quality fruits
-          since 2018. We take pride in bringing you the freshest, most
-          nutritious fruits from across India and beyond.
-        </p>
-        <p className="text-gray-600 mt-4">
-          Our commitment to quality, freshness, and customer satisfaction has
-          made us a beloved part of the community. From exotic tropical fruits
-          to seasonal favorites, we carefully select each piece to ensure you
-          get nothing but the best.
-        </p>
+        <p className="text-gray-700 leading-relaxed">{content.paragraph1}</p>
+        <p className="text-gray-600 mt-4">{content.paragraph2}</p>
       </div>
 
-      {/* Features */}
+      {/* Features Cards (keep your existing code) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12 max-w-6xl mx-auto">
         {/* Card 1 */}
         <div className="bg-white rounded-2xl shadow p-6 text-center">

@@ -1,7 +1,17 @@
+"use client";
+
 import React from "react";
 import { MapPin, Phone, Clock } from "lucide-react";
 
 export default function GetInTouch() {
+  // Function to handle "Get Directions" button click
+  const handleGetDirections = () => {
+    // Use the provided precise Google Maps link for RUBY FRUITS SHOP
+    const googleMapsUrl = "https://maps.app.goo.gl/wMzhfMoub9ET2wsTA";
+    // Open the URL in a new tab
+    window.open(googleMapsUrl, "_blank");
+  };
+
   return (
     <div>
       <div className="text-center my-12 px-4">
@@ -9,9 +19,9 @@ export default function GetInTouch() {
           Visit Our Store
         </h1>
         <p className="text-gray-600 text-2xl">
-          Conveniently located at Avadi Railway Station Road,we're easily
+          Conveniently located at Avadi Railway Station Road, we're easily
           accessible and <br /> ready to serve you with the freshest fruits in
-          chennai
+          Chennai
         </p>
       </div>
 
@@ -110,7 +120,10 @@ export default function GetInTouch() {
                 </p>
 
                 {/* Get Directions Button */}
-                <button className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-full font-medium transition-colors duration-200 shadow-lg hover:shadow-xl">
+                <button
+                  onClick={handleGetDirections}
+                  className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-full font-medium transition-colors duration-200 shadow-lg hover:shadow-xl"
+                >
                   Get Directions
                 </button>
               </div>
